@@ -18,7 +18,7 @@ for (const button of nums) {
     if (
       i === 1 &&
       outputWay.textContent === 'click to copy' &&
-      output.textContent !== 0
+      output.textContent !==//// 0
     ) {
       output.textContent = '';
       calc = '';
