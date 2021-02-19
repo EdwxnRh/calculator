@@ -15,6 +15,16 @@ let i = 0;
 
 for (const button of nums) {
   button.addEventListener('click', function () {
+    if (
+      i === 1 &&
+      outputWay.textContent === 'click to copy' &&
+      output.textContent !== 0
+    ) {
+      output.textContent = '';
+      calc = '';
+      outputWay.textContent = '';
+      i = 0;
+    }
     output.textContent += button.textContent;
     switch (output.textContent.length) {
       case 10:
