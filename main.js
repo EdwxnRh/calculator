@@ -43,70 +43,84 @@ for (const button of nums) {
 
 for (const operator of operators) {
   operator.addEventListener('click', function () {
-    console.log(operator.textContent);
-    console.log('This is: ' + x);
+    operatorS = operator.textContent;
 
     if (operator.textContent == ',') {
       if (!output.textContent.includes('.') && output.textContent.length > 0) {
         output.textContent += '.';
-        operatorS = operator.textContent;
       }
     } else if (output.textContent.length > 0) {
-      operatorS = operator.textContent;
-      if (prevOutput === undefined) {
-        prevOutput = currentOutput;
-        currentOutput = 0;
-      }
-      if (output.textContent.length >= 29) {
-        outputWay.textContent = 'wayyy too big number ._.';
-      }
-      output.textContent = '';
-      if (operatorS != undefined && x === undefined) {
-        compute(operatorS);
+      if (outputWay.textContent.length === 0) {
+        outputWay.textContent = output.textContent;
         output.textContent = '';
-        outputWay.textContent = `${prevOutput} ${operatorS} `;
-        x = operatorS;
-        operatorS = undefined;
-      }
-      if (x != undefined && operatorS != undefined) {
-        compute(x);
-        x = operatorS;
-        output.textContent = '';
-        outputWay.textContent = `${prevOutput} ${operatorS} `;
-      }
-    } else {
-      operatorS = operator.textContent;
-      x = operatorS;
-      if (prevOutput === undefined) {
-        prevOutput = 0;
-        outputWay.textContent = `${prevOutput} ${operatorS}`;
+        if (outputWay.textContent.length >= 39) {
+          outputWay.classList.add('hidden');
+          console.log('hey');
+        }
       } else {
-        outputWay.textContent = `${prevOutput} ${operatorS}`;
+        outputWay.textContent += ' ' + operatorS + ' ' + output.textContent;
+        if (outputWay.textContent.length >= 39) {
+          outputWay.classList.add('hidden');
+        }
+        output.textContent = '';
       }
+    } else if (output.textContent.length === 0) {
     }
+    //     } else if (output.textContent.length > 0) {
+    //       operatorS = operator.textContent;
+    //       if (prevOutput === undefined) {
+    //         prevOutput = currentOutput;
+    //         currentOutput = 0;
+    //       }
+    //       if (output.textContent.length >= 29) {
+    //         outputWay.textContent = 'wayyy too big number ._.';
+    //       }
+    //       output.textContent = '';
+    //       if (operatorS != undefined && x === undefined) {
+    //         compute(operatorS);
+    //         output.textContent = '';
+    //         outputWay.textContent = `${prevOutput} ${operatorS} `;
+    //         x = operatorS;
+    //         operatorS = undefined;
+    //       }
+    //       if (x != undefined && operatorS != undefined) {
+    //         compute(x);
+    //         x = operatorS;
+    //         output.textContent = '';
+    //         outputWay.textContent = `${prevOutput} ${operatorS} `;
+    //       }
+    //     } else {
+    //       operatorS = operator.textContent;
+    //       x = operatorS;
+    //       if (prevOutput === undefined) {
+    //         prevOutput = 0;
+    //         outputWay.textContent = `${prevOutput} ${operatorS}`;
+    //       } else {
+    //         outputWay.textContent = `${prevOutput} ${operatorS}`;
+    //       }
   });
 }
 
-function compute(operator) {
-  switch (operator) {
-    case '+':
-      prevOutput = parseFloat(prevOutput) + parseFloat(currentOutput);
-      break;
-    case '-':
-      prevOutput = parseFloat(prevOutput) - parseFloat(currentOutput);
-      break;
-    case '*':
-      prevOutput = parseFloat(prevOutput) * parseFloat(currentOutput);
-      break;
-    case '/':
-      console.log('hello');
-      if (currentOutput === 0) {
-        output.textContent = 'Error';
-      }
-      prevOutput = parseFloat(prevOutput) / parseFloat(currentOutput);
-      break;
+// function compute(operator) {
+//   switch (operator) {
+//     case '+':
+//       prevOutput = parseFloat(prevOutput) + parseFloat(currentOutput);
+//       break;
+//     case '-':
+//       prevOutput = parseFloat(prevOutput) - parseFloat(currentOutput);
+//       break;
+//     case '*':
+//       prevOutput = parseFloat(prevOutput) * parseFloat(currentOutput);
+//       break;
+//     case '/':
+//       console.log('hello');
+//       if (currentOutput === 0) {
+//         output.textContent = 'Error';
+//       }
+//       prevOutput = parseFloat(prevOutput) / parseFloat(currentOutput);
+//       break;
 
-    default:
-      break;
-  }
-}
+//     default:
+//       break;
+//   }
+// }
