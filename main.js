@@ -4,10 +4,9 @@ const nums = document.querySelectorAll('.num');
 const operators = document.querySelectorAll('.btn');
 let output = document.querySelector('.out-num');
 let outputWay = document.querySelector('.out-way');
-let currentOutput = 0;
-let prevOutput;
-let operatorS;
+let calc = '';
 let x;
+let operatorS;
 
 console.log(nums);
 
@@ -15,7 +14,6 @@ for (const button of nums) {
   button.addEventListener('click', function () {
     console.log(button.textContent);
     output.textContent += button.textContent;
-    currentOutput = parseFloat(output.textContent);
     switch (output.textContent.length) {
       case 10:
         output.style.fontSize = '40px';
@@ -33,7 +31,6 @@ for (const button of nums) {
         output.textContent = '';
         output.style.fontSize = '45px';
         output.style.top = '10px';
-        currentOutput = 0;
         break;
       default:
         break;
@@ -43,61 +40,47 @@ for (const button of nums) {
 
 for (const operator of operators) {
   operator.addEventListener('click', function () {
-    operatorS = operator.textContent;
+    x = calc.charAt(calc.length - 1);
 
     if (operator.textContent == ',') {
       if (!output.textContent.includes('.') && output.textContent.length > 0) {
         output.textContent += '.';
       }
     } else if (output.textContent.length > 0) {
+      console.log('YES');
       if (outputWay.textContent.length === 0) {
-        outputWay.textContent = output.textContent;
+        console.log('OUTPUT LEER');
+        calc = output.textContent + ' ' + operator.textContent;
+        outputWay.textContent = calc;
         output.textContent = '';
-        if (outputWay.textContent.length >= 39) {
-          outputWay.classList.add('hidden');
-          console.log('hey');
-        }
       } else {
-        outputWay.textContent += ' ' + operatorS + ' ' + output.textContent;
-        if (outputWay.textContent.length >= 39) {
-          outputWay.classList.add('hidden');
+        if (
+          x.startsWith('+') ||
+          x.startsWith('-') ||
+          x.startsWith('*') ||
+          x.startsWith('/')
+        ) {
+          console.log('OUTPUT VOOLL');
+          calc += ' ' + output.textContent + ' ' + operator.textContent;
+          outputWay.textContent = calc;
+          output.textContent = '';
         }
-        output.textContent = '';
       }
     } else if (output.textContent.length === 0) {
+      console.log('NO');
+      if (
+        x.startsWith('+') ||
+        x.startsWith('-') ||
+        x.startsWith('*') ||
+        x.startsWith('/')
+      ) {
+        outputWay.textContent = calc;
+      }
     }
-    //     } else if (output.textContent.length > 0) {
-    //       operatorS = operator.textContent;
-    //       if (prevOutput === undefined) {
-    //         prevOutput = currentOutput;
-    //         currentOutput = 0;
-    //       }
-    //       if (output.textContent.length >= 29) {
-    //         outputWay.textContent = 'wayyy too big number ._.';
-    //       }
-    //       output.textContent = '';
-    //       if (operatorS != undefined && x === undefined) {
-    //         compute(operatorS);
-    //         output.textContent = '';
-    //         outputWay.textContent = `${prevOutput} ${operatorS} `;
-    //         x = operatorS;
-    //         operatorS = undefined;
-    //       }
-    //       if (x != undefined && operatorS != undefined) {
-    //         compute(x);
-    //         x = operatorS;
-    //         output.textContent = '';
-    //         outputWay.textContent = `${prevOutput} ${operatorS} `;
-    //       }
-    //     } else {
-    //       operatorS = operator.textContent;
-    //       x = operatorS;
-    //       if (prevOutput === undefined) {
-    //         prevOutput = 0;
-    //         outputWay.textContent = `${prevOutput} ${operatorS}`;
-    //       } else {
-    //         outputWay.textContent = `${prevOutput} ${operatorS}`;
-    //       }
+    if (outputWay.textContent.length >= 39 && outputWay.text) {
+      outputWay.textContent = `...`;
+    }
+    console.log(calc);
   });
 }
 
