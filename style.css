@@ -120,6 +120,7 @@ footer {
   position: absolute;
   border-radius: 15px;
   background-color: #191a1d;
+  cursor: pointer;
 }
 .out-num {
   top: 10px;
@@ -162,7 +163,8 @@ footer {
 
 .btn0:hover,
 .btn:hover,
-.btn1:hover {
+.btn1:hover,
+.rest {
   box-shadow: 0 8px 20px 5px rgba(52, 58, 92, 0.125);
   cursor: pointer;
 }
@@ -176,18 +178,12 @@ footer {
   position: absolute;
   width: 400px;
   height: 570px;
-  top: 50px;
+  top: 60px;
   left: 50px;
 }
 
-.grid {
-  display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(3, 1fr);
-}
-
 .gr {
-  margin: 20px 5px 5px 8px;
+  margin: 30px 5px 0px 8px;
   padding: 5px;
   height: 100px;
   width: 100px;
@@ -203,18 +199,12 @@ footer {
   line-height: 58px;
 }
 
-.btn1 {
-  margin-top: -5px;
-  margin-left: 10px;
-  width: 360px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: #191a1d;
+.rest {
+  top: 50px;
+  left: 45px;
   color: #e2e7ff;
+  position: absolute;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 40px;
 }
