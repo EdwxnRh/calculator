@@ -156,33 +156,13 @@ enter.addEventListener('click', function () {
       i = 1;
     }
   }
-  resizeOutput();
-});
-
-function resizeOutput() {
-  switch (result.length) {
-    case 10:
-      output.style.fontSize = '40px';
-      output.style.top = '15px';
-      break;
-    case 12:
-      output.style.fontSize = '30px';
-      output.style.top = '30px';
-      break;
-    case 15:
-      output.style.fontSize = '20px';
-      output.style.top = '45px';
-      break;
-    case 22:
-      output.textContent = 'Number to big! ';
-      outputWay.textContent = 'click to copy';
-      output.style.fontSize = '40px';
-      output.style.top = '10px';
-      break;
-    default:
-      break;
+  if (result.length > 10) {
+    output.textContent = 'Number to big! ';
+    outputWay.textContent = 'click to copy';
+    output.style.fontSize = '40px';
+    output.style.top = '10px';
   }
-}
+});
 
 outputBtn.addEventListener('click', function () {
   let range = document.createRange();
